@@ -37,10 +37,10 @@ public class DataSafeActivity  extends Activity implements View.OnClickListener 
     // Starte die Klasse datasafe (wird über MainActivity aufgerufen)
     public void datasafe()
     {
-        safe = (Button) findViewById(R.id.buttonSafe);
-        laden = (Button) findViewById(R.id.buttonLoad);
-        eingabe = (EditText) findViewById(R.id.TextEingabe);
-        anzeige = (TextView) findViewById(R.id.GeladenerText);
+        safe = (Button) findViewById(R.id.tab4);
+        laden = (Button) findViewById(R.id.tab5);
+        eingabe = (EditText) findViewById(R.id.tab2);
+        anzeige = (TextView) findViewById(R.id.tab3);
 
         safe.setOnClickListener(this);
         laden.setOnClickListener(this);
