@@ -17,9 +17,13 @@ public class MainTabActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_1_main);
 
-        MainActivity main = new MainActivity();
+        ScreenCheck screenCheck = new ScreenCheck();
+
+        registerReceiver(screenCheck.mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_ON));
+        registerReceiver(screenCheck.mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+
         TextView textView = new TextView(this);
-        textView.setText(main.on);
+        textView.setText(screenCheck.on);
         setContentView(textView);
     }
 }
