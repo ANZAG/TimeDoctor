@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">TimeDoctor</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    //Tab-Strings
+    <string name="main">Main</string> //label1
+    <string name="apps">apps</string> //label 2
+    <string name="top">TOP 10</string>
+    <string name="settings">Options</string>
+    <string name="tipps">Tipps</string>
+    <string name="test">test</string>
+    <string name="test2">test2</string>
+
+    //Strings zur Datenspeicherung
+    <string name="buttonSafe">Daten speichern</string>
+    <string name="buttonLoad">Daten Laden</string>
+    <string name="BeschreibungEditText">Hier Bitte Text eingeben</string>
+    <string name="BeschreibungsAnzeige">Geladen</string>
+
+    //Befehlvariable zur Angabe des Hintergrunds
+    <color name="hintergrundfarbe">#0018ff</color>
+</resources>
