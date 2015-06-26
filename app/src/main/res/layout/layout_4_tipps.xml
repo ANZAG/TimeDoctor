@@ -9,71 +9,86 @@
         android:id="@android:id/tabhost"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        </TabWidget>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical">
-            <TabWidget
-                android:id="@+id/gutting"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-            </TabWidget>
+            android:orientation="vertical"
+            android:weightSum="1">
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="100dp">
             </FrameLayout>
+
+            <!-- android:id="@+id/TextEingabe" -->
+            <TextView
+                android:id="@+id/tab1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/hello_world"
+                android:layout_gravity="right|top" />
+
+            <EditText
+                android:id="@+id/tab2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/BeschreibungEditText"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/tab3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/BeschreibungsAnzeige"
+                android:layout_gravity="center_horizontal"
+                android:phoneNumber="false"
+                android:layout_weight="1.04"
+                android:enabled="false" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+            <Button
+                android:id="@+id/tab4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonSafe"
+                android:nestedScrollingEnabled="false"
+                android:enabled="true"
+                android:layout_marginTop="40dp"
+                android:clickable="false"
+                android:singleLine="false"
+                android:layout_gravity="right|bottom" />
+
+            <Button
+                android:id="@+id/tab5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonLoad"
+                android:capitalize="characters"
+                android:enabled="true"
+                android:clickable="false"
+                android:singleLine="false" />
+            </LinearLayout>
+
         </LinearLayout>
     </TabHost>
 
+    <!--android:id="@+id/GeladenerText"-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/hello_world"
-        android:id="@+id/textView" />
+    <!--android:id="@+id/buttonSafe"-->
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="204dp"
-        android:id="@+id/TextEingabe"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/BeschreibungEditText" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/BeschreibungsAnzeige"
-        android:id="@+id/GeladenerText"
-        android:layout_gravity="center_horizontal"
-        android:phoneNumber="false"
-        android:layout_weight="1.04"
-        android:enabled="false" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:text="@string/buttonSafe"
-        android:id="@+id/buttonSafe"
-        android:nestedScrollingEnabled="false"
-        android:enabled="true"
-        android:layout_marginTop="40dp"
-        android:clickable="false"
-        android:singleLine="false"
-        android:layout_weight="0.18" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:text="@string/buttonLoad"
-        android:id="@+id/buttonLoad"
-        android:capitalize="characters"
-        android:enabled="true"
-        android:layout_marginTop="10dp"
-        android:clickable="false"
-        android:singleLine="false" />
+    <!--android:id="@+id/buttonLoad"-->
 
 </LinearLayout>
