@@ -20,15 +20,6 @@
                 android:layout_height="wrap_content">
             </TabWidget>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/hello_world"
-                android:id="@+id/textView"
-                android:layout_marginTop="100dp"
-                android:layout_marginLeft="150dp" />
-
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
