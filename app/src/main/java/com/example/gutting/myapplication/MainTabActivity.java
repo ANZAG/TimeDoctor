@@ -14,6 +14,9 @@ import android.widget.TextView;
  */
 public class MainTabActivity extends Activity {
 
+    public int on = 0;
+    TextView screenCheck;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -23,12 +26,10 @@ public class MainTabActivity extends Activity {
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_ON));
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
-        TextView screenCheck = new TextView(this);
+        screenCheck = new TextView(this);
         screenCheck.setText(Integer.toString(on));
         setContentView(screenCheck);
     }
-
-    public int on = 0;
 
     //Create broadcast object
     BroadcastReceiver mybroadcast = new BroadcastReceiver() {
@@ -41,6 +42,7 @@ public class MainTabActivity extends Activity {
             if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
                 Log.i("[BroadcastReceiver]", "Screen ON");
                 on++;
+                screenCheck.setText(Integer.toString(on));
             }
             else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
                 Log.i("[BroadcastReceiver]", "Screen OFF");
