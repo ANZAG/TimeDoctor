@@ -22,13 +22,13 @@ public class MainActivity extends TabActivity{
         TabHost.TabSpec spec;
         Intent intent;
 
-        /*// Main tab
-        intent = new Intent(this, MainActivity.class);
+        // Main tab
+        intent = new Intent(this, MainTabActivity.class);
         spec = mTabHost.newTabSpec("main")
                 .setIndicator("Main")
                 .setContent(intent);
 
-        mTabHost.addTab(spec);*/
+        mTabHost.addTab(spec);
 
         // Apps
         intent = new Intent(this, AppListActivity.class);

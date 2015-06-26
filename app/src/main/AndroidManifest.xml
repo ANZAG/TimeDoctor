@@ -19,6 +19,7 @@
         <!-- Aktivierung der DataSafeActivity-->
         <activity android:name=".DataSafeActivity"/>
         <activity android:name=".AppListActivity"/>
+        <activity android:name=".MainTabActivity"/>
     </application>
 
 </manifest>

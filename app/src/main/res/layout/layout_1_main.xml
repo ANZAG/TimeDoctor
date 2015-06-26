@@ -24,13 +24,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
             </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/hello_world"
+                android:id="@+id/textView" />
+
         </LinearLayout>
     </TabHost>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/hello_world"
-        android:id="@+id/textView" />
+
 
 </LinearLayout>

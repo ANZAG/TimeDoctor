@@ -20,7 +20,7 @@ public class DataSafeActivity  extends Activity implements View.OnClickListener 
     private EditText eingabe;
     private TextView anzeige;
 
-    // Variablen zum dauerhafen Speichern benötigt
+    // Variablen zum dauerhaften Speichern benötigt
     private SharedPreferences speicher;
     // editor wird benötigt zum Speichern
     private Editor editor;
