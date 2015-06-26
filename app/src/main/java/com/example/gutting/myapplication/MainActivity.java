@@ -1,8 +1,12 @@
 package com.example.gutting.myapplication;
 
 import android.app.TabActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -60,7 +64,6 @@ public class MainActivity extends TabActivity{
 
         /*******************Tabs*****************************/
            }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
