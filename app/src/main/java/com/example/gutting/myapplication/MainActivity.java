@@ -14,10 +14,10 @@ public class MainActivity extends TabActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_1_main);
+        setContentView(R.layout.layout_0_start);
 
         /*******************Tabs*****************************/
-        //Definieren der Tab Reiter
+        //Definieren der Tab Reiter Variablen
         mTabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
@@ -39,7 +39,16 @@ public class MainActivity extends TabActivity{
 
         mTabHost.addTab(spec);
 
+        // Top10
+        intent = new Intent(this, TopTenActivity.class);
 
+        spec = mTabHost.newTabSpec("top10")
+                .setIndicator("Top10")
+                .setContent(intent);
+
+        mTabHost.addTab(spec);
+
+        // Tipps
         intent = new Intent(this, DataSafeActivity.class);
 
         spec = mTabHost.newTabSpec("tipps")

@@ -6,13 +6,11 @@ import android.os.Bundle;
 /**
  * Created by Gutting on 26.06.2015.
  */
-public class MainTabActivity extends Activity {
+public class TopTenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_1_main);
+        setContentView(R.layout.layout_3_top10);
     }
 }
