@@ -15,6 +15,12 @@ import android.widget.TextView;
 public class MainTabActivity extends Activity {
 
     public int on = 0;
+
+    // Timestamp
+    private long start;
+    private long ende;
+    private long gesamt;
+
     TextView screenCheck;
 
     @Override
@@ -43,12 +49,26 @@ public class MainTabActivity extends Activity {
             Log.i("[BroadcastReceiver]", "MyReceiver");
 
             if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
+
+                // Timestamp setzen dabei in sekunden umrechnen (/1000)
+                start = System.currentTimeMillis()/1000;
+
                 Log.i("[BroadcastReceiver]", "Screen ON");
+                Log.i("[BroadcastReceiver]", String.valueOf(start));
+
                 on++;
                 screenCheck.setText("Anzahl Entsperrungen: "+Integer.toString(on));
             }
             else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+                // Timestamp setzen dabei in sekunden umrechnen (/1000)
+                ende = System.currentTimeMillis()/1000;
+
+                // gesamte Anzahl online in sekunden.
+                gesamt = gesamt + (ende - start);
+
                 Log.i("[BroadcastReceiver]", "Screen OFF");
+                Log.i("[BroadcastReceiver]", String.valueOf(ende));
+                Log.i("[BroadcastReceiver]", String.valueOf(gesamt));
             }
 
         }

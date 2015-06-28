@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <!-- Aktivierung der DataSafeActivity-->
-        <activity android:name=".DataSafeActivity"/>
+        <activity android:name=".DataSafeActivity"/> // Nur aus Testzwecken
         <activity android:name=".AppListActivity"/>
         <activity android:name=".MainTabActivity"/>
         <activity android:name=".TopTenActivity"/>
