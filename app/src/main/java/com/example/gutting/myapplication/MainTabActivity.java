@@ -26,10 +26,13 @@ public class MainTabActivity extends Activity {
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_ON));
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
-        screenCheck = new TextView(this);
-        screenCheck.setText(Integer.toString(on));
-        setContentView(screenCheck);
+        //Test
+        screenCheck = (TextView) findViewById(R.id.tv_counter);
+        //screenCheck = new TextView(this);
+        //screenCheck.setText(Integer.toString(on));
+        //setContentView(screenCheck);
     }
+
 
     //Create broadcast object
     BroadcastReceiver mybroadcast = new BroadcastReceiver() {
@@ -42,7 +45,7 @@ public class MainTabActivity extends Activity {
             if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
                 Log.i("[BroadcastReceiver]", "Screen ON");
                 on++;
-                screenCheck.setText(Integer.toString(on));
+                screenCheck.setText("Anzahl Entsperrungen: "+Integer.toString(on));
             }
             else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
                 Log.i("[BroadcastReceiver]", "Screen OFF");
