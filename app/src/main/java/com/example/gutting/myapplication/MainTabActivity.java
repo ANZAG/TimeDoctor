@@ -91,6 +91,7 @@ public class MainTabActivity extends Activity {
             // Sekunde hochzählen
             gesamt++;
             setTime();
+            Log.i("[Runnable]", "Hochzaehlen");
             // runnable handler jede Sekunde neu starten
             handler.postDelayed(this, 1000);
         }
