@@ -21,7 +21,31 @@ public class MainTabActivity extends Activity {
     private long ende;
     private long gesamt;
 
+    private int hours;
+    private int minutes;
+    private int secounds;
+
     TextView screenCheck;
+    TextView timeStamp;
+
+    private void setTime()
+    {
+        // gesamte Anzahl online in sekunden.
+        gesamt = gesamt + (ende - start);
+
+        hours = (int) (gesamt / 3600);
+        gesamt = gesamt - hours * 3600;
+        minutes = (int) (gesamt / 60);
+        gesamt = gesamt - minutes * 60;
+        secounds = (int) gesamt;
+        gesamt = gesamt - secounds;
+
+        timeStamp.setText("Stunden: " + Integer.toString(hours)
+                      + "\n Minuten: " + Integer.toString(minutes)
+                      + "\n Sekunden: " + Integer.toString(secounds));
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +53,18 @@ public class MainTabActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_1_main);
 
+        // Initiales setzen des Timestamps beim Start der App
+        if (start == 0)
+        {
+            start = System.currentTimeMillis()/1000;
+        }
+
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_ON));
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
-        //Test
         screenCheck = (TextView) findViewById(R.id.tv_counter);
-        //screenCheck = new TextView(this);
-        //screenCheck.setText(Integer.toString(on));
-        //setContentView(screenCheck);
+        timeStamp= (TextView) findViewById(R.id.tv_timestamp);
+        setTime();
     }
 
 
@@ -62,9 +90,6 @@ public class MainTabActivity extends Activity {
             else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
                 // Timestamp setzen dabei in sekunden umrechnen (/1000)
                 ende = System.currentTimeMillis()/1000;
-
-                // gesamte Anzahl online in sekunden.
-                gesamt = gesamt + (ende - start);
 
                 Log.i("[BroadcastReceiver]", "Screen OFF");
                 Log.i("[BroadcastReceiver]", String.valueOf(ende));
