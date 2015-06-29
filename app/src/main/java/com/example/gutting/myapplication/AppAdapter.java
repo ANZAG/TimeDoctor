@@ -23,56 +23,63 @@ public class AppAdapter extends ArrayAdapter<ApplicationInfo> {
     private Context context;
     private PackageManager packageManager;
 
+    // Konstruktor
     public AppAdapter(Context context, int resource,
                       List<ApplicationInfo> objects)
-    {
+    {   //Aufruf des Konstruktors der Mutterklasse
+        //Übergabe der Klasse (context)
+        //Übergabe des Layouts (resource)
+        //Übergabe der befüllten Liste (objects)
         super(context, resource, objects);
 
+        //Befüllen der Instanzvariablen
         this.context = context;
         this.appList = objects;
         packageManager = context.getPackageManager();
     }
 
-    @Override
-    public int getCount()
-    {
-        return ((null != appList) ? appList.size() : 0);
-    }
-
-    @Override
-    public ApplicationInfo getItem(int position)
-    {
-        return ((null != appList) ? appList.get(position) : null);
-    }
-
-    @Override
-      public long getItemId(int position)
-    {
-        return position;
-    }
-
+    /**
+     *
+     * @param position      Aktuelles Element der Liste
+     * @param convertView   von ArrayAdapter gesetztes Layout
+     * @param parent
+     * @return
+     *
+     * Aufruf durch Mutterklasse ArrayAdapter
+     *
+     * Definieren des endgültigen Layouts der Liste
+     * Aufruf findet für jedes Element der Liste statt
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView;
 
+        // Ist der View nicht instanziiert worden
         if(null == view){
+            //Instanziiert ein neues XML File inklusive der AppListe innerhalb des momentanen View
+            // d.h. es findet eine Überschreibung des durch die AppListActivity erzeugten Layouts statt
+            // in unserem Fall durch das Layout.XML file "list_item"
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.list_item, null);
         }
+        //Aktuelles Element der Liste aufrufen
         ApplicationInfo data = appList.get(position);
 
+        // Wenn Element nicht leer
         if(null != data)
         {
+            //Identifiziere den entsprechenden TextView innerhalb des Layouts
             TextView appName = (TextView) view.findViewById(R.id.app_name);
             TextView packageName = (TextView) view.findViewById(R.id.app_package);
             ImageView iconView = (ImageView) view.findViewById(R.id.app_icon);
 
+            //Befüllung des entsprechenden TextViews
             appName.setText(data.loadLabel(packageManager));
             packageName.setText(data.packageName);
             iconView.setImageDrawable(data.loadIcon(packageManager));
-
         }
+            //Rückgabe des neu erzeugten Layouts
             return view;
     }
 }

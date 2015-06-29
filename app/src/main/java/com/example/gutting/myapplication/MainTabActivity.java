@@ -7,11 +7,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,6 +31,7 @@ public class MainTabActivity extends Activity {
     private int secounds;
 
     private Handler handler = new Handler();
+    //private FillAppList fillAppList = new FillAppList();
 
     TextView screenCheck;
     TextView timeStamp;
@@ -59,6 +64,8 @@ public class MainTabActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_1_main);
 
+        handler.postDelayed(runnable, 1000); //Test
+
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_ON));
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
@@ -89,8 +96,6 @@ public class MainTabActivity extends Activity {
                 screenCheck.setText("Anzahl Entsperrungen: " + Integer.toString(on));
 
 
-                getCurrentProgramm();
-
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 
                 Log.i("[BroadcastReceiver]", "Screen OFF");
@@ -109,20 +114,49 @@ public class MainTabActivity extends Activity {
             secounds++;
             //Starte Methode setTime
             setTime();
+            // Ermitteln der momentan geöffneten App
+            setProgrammTime(getCurrentProgramm());
+
+
             Log.i("[Runnable]", "Hochzaehlen");
             // runnable handler jede Sekunde neu starten
             handler.postDelayed(this, 1000);
         }
     };
 
-    public void getCurrentProgramm(){
+    public String getCurrentProgramm(){
 
-        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
-        Log.d("topActivity", "CURRENT Activity ::" + taskInfo.get(0).topActivity.getClassName());
-        ComponentName componentInfo = taskInfo.get(0).topActivity;
-        componentInfo.getPackageName();
+        //Initialiere String für Package Ausgabe
+        String mPackageName;
 
+        // Initialisieren des Activity Managers
+        // Aufruf des gewünschten State Handler --> ACTIVITY_SERVICE
+        // Hiermit kann innerhalb der App mit sämtlichen Activitys des Mobilen Gerätes kommuniziert werden
+        ActivityManager mActivityManager =(ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
 
+        // Überprüfe welches API Version benutzt wird
+        // Gebe als Ergebnis den Package Namen der momentan geöffneten App aus.
+        if(Build.VERSION.SDK_INT > 20){
+            // Neue Versionen (>20), hierfür gilt der Befehl getRunningAppProcesses
+            mPackageName = mActivityManager.getRunningAppProcesses().get(0).processName;
+        }
+        else{
+            // Ältere Versionen (<=20), hierfür gilt der Befehl getRunningTasks
+           mPackageName = mActivityManager.getRunningTasks(1).get(0).topActivity.getPackageName();
+        }
+        Log.i("Package", mPackageName);
+        //Gebe den Package Namen weiter
+        return mPackageName;
+    }
+
+    public void setProgrammTime(String packageName){
+
+        //Übergebe die AppList an eine lokale Liste
+       /* List<ApplicationInfo> appList = fillAppList.getAppList();
+
+        for(int i = 0; i < appList.size(); i++)
+        {
+           Log.i("AppList", "" + appList.get(i));
+        }*/
     }
 }
