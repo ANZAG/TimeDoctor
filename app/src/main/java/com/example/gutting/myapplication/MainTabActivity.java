@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -17,22 +18,18 @@ public class MainTabActivity extends Activity {
     public int on = 0;
 
     // Timestamp
-    private long start;
-    private long ende;
     private long gesamt;
 
     private int hours;
     private int minutes;
     private int secounds;
 
+    private Handler handler = new Handler();
+
     TextView screenCheck;
     TextView timeStamp;
 
-    private void setTime()
-    {
-        // gesamte Anzahl online in sekunden.
-        gesamt = gesamt + (ende - start);
-
+    private void setTime() {
         hours = (int) (gesamt / 3600);
         gesamt = gesamt - hours * 3600;
         minutes = (int) (gesamt / 60);
@@ -41,10 +38,8 @@ public class MainTabActivity extends Activity {
         gesamt = gesamt - secounds;
 
         timeStamp.setText("Stunden: " + Integer.toString(hours)
-                      + "\n Minuten: " + Integer.toString(minutes)
-                      + "\n Sekunden: " + Integer.toString(secounds));
-
-
+                + "\nMinuten: " + Integer.toString(minutes)
+                + "\nSekunden: " + Integer.toString(secounds));
     }
 
     @Override
@@ -53,18 +48,12 @@ public class MainTabActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_1_main);
 
-        // Initiales setzen des Timestamps beim Start der App
-        if (start == 0)
-        {
-            start = System.currentTimeMillis()/1000;
-        }
-
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_ON));
         registerReceiver(mybroadcast, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
         screenCheck = (TextView) findViewById(R.id.tv_counter);
-        timeStamp= (TextView) findViewById(R.id.tv_timestamp);
-        setTime();
+        timeStamp = (TextView) findViewById(R.id.tv_timestamp);
+
     }
 
 
@@ -76,26 +65,34 @@ public class MainTabActivity extends Activity {
             // TODO Auto-generated method stub
             Log.i("[BroadcastReceiver]", "MyReceiver");
 
-            if(intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 
-                // Timestamp setzen dabei in sekunden umrechnen (/1000)
-                start = System.currentTimeMillis()/1000;
+                //Start der Methode runnable mittels Handler (Übergabe 1 Sekunde)
+                handler.postDelayed(runnable, 1000);
 
                 Log.i("[BroadcastReceiver]", "Screen ON");
-                Log.i("[BroadcastReceiver]", String.valueOf(start));
-
                 on++;
-                screenCheck.setText("Anzahl Entsperrungen: "+Integer.toString(on));
-            }
-            else if(intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
-                // Timestamp setzen dabei in sekunden umrechnen (/1000)
-                ende = System.currentTimeMillis()/1000;
+                screenCheck.setText("Anzahl Entsperrungen: " + Integer.toString(on));
+
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 
                 Log.i("[BroadcastReceiver]", "Screen OFF");
-                Log.i("[BroadcastReceiver]", String.valueOf(ende));
-                Log.i("[BroadcastReceiver]", String.valueOf(gesamt));
+
+                //Beende den runnable Handler
+                handler.removeCallbacks(runnable);
             }
 
+        }
+
+    };
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            // Sekunde hochzählen
+            gesamt++;
+            setTime();
+            // runnable handler jede Sekunde neu starten
+            handler.postDelayed(this, 1000);
         }
     };
 }
