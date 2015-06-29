@@ -18,8 +18,6 @@ public class MainTabActivity extends Activity {
     public int on = 0;
 
     // Timestamp
-    private long gesamt;
-
     private int hours;
     private int minutes;
     private int secounds;
@@ -30,16 +28,26 @@ public class MainTabActivity extends Activity {
     TextView timeStamp;
 
     private void setTime() {
-        hours = (int) (gesamt / 3600);
-        gesamt = gesamt - hours * 3600;
-        minutes = (int) (gesamt / 60);
-        gesamt = gesamt - minutes * 60;
-        secounds = (int) gesamt;
-        gesamt = gesamt - secounds;
+        // Wenn 60 Sekunden
+        if(secounds > 59) {
+            // Minuten hochzählen, 60 Sekunden abziehen
+            minutes++;
+            secounds = 0;
+        }
+
+        // Wenn Minuten = 60
+        if(minutes > 59 ){
+            // Stunden hochzählen, Minuten abziehen
+            hours++;
+            minutes = 0;
+        }
+
+
 
         timeStamp.setText("Stunden: " + Integer.toString(hours)
                 + "\nMinuten: " + Integer.toString(minutes)
                 + "\nSekunden: " + Integer.toString(secounds));
+
     }
 
     @Override
@@ -89,7 +97,7 @@ public class MainTabActivity extends Activity {
         @Override
         public void run() {
             // Sekunde hochzählen
-            gesamt++;
+            secounds++;
             setTime();
             Log.i("[Runnable]", "Hochzaehlen");
             // runnable handler jede Sekunde neu starten
