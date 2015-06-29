@@ -33,16 +33,15 @@ public class MainTabActivity extends Activity {
     TextView screenCheck;
     TextView timeStamp;
 
+    /* App Zeit Zähler */
     //Initialisierung des Package Managers
     PackageManager packageManager;
-
     //Initialisierung der Klasse FillAppList
     // --> Auflistung aller Installierten Apps auf dem Mobile Phone
     FillAppList fillAppList;
-
-    //Befüllen der definierten applist über die Methode checkForLaunchIntent
+    //Initialisierung der appList
     List<App> appList;
-
+    // Initialisierung des appAdapters
     AppAdapter appAdapter;
 
 
