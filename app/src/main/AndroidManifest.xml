@@ -21,6 +21,8 @@
         <activity android:name=".AppListActivity"/>
         <activity android:name=".MainTabActivity"/>
         <activity android:name=".TopTenActivity"/>
+
+        <uses-permission android:name="android.permission.GET_TASKS"/>
     </application>
 
 </manifest>
