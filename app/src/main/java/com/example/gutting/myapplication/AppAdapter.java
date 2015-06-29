@@ -1,15 +1,12 @@
 package com.example.gutting.myapplication;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +20,8 @@ public class AppAdapter extends ArrayAdapter<App> {
     private List<App> appList = null;
     private Context context;
     private PackageManager packageManager;
+
+    TextView time;
 
     // Konstruktor
     public AppAdapter(Context context, int resource,
@@ -71,7 +70,7 @@ public class AppAdapter extends ArrayAdapter<App> {
         {
             //Identifiziere den entsprechenden TextView innerhalb des Layouts
             TextView appName = (TextView) view.findViewById(R.id.app_name);
-            TextView time = (TextView) view.findViewById(R.id.app_time);
+            time = (TextView) view.findViewById(R.id.app_time);
             ImageView iconView = (ImageView) view.findViewById(R.id.app_icon);
 
             //Befüllung des entsprechenden TextViews
@@ -84,17 +83,12 @@ public class AppAdapter extends ArrayAdapter<App> {
             return view;
     }
 
-    public void setTime(App app)
+    public void setTime(App app, int position, View view)
     {
-        /*time.setText("Verbrauchte Zeit: "
-                    + Integer.toString(app.getHours()) + "h:"
-                    + Integer.toString(app.getMinutes()) + "m:"
-                    + Integer.toString(app.getSecounds())+ "s");
-        Log.i("Test hours", Integer.toString(app.getHours()));*/
+        time = (TextView) view.findViewById(R.id.app_time);
+        String text = time.getText().toString();
 
-
-        Log.i("Test minutes", Integer.toString(app.getMinutes()));
-        Log.i("Test secounds", Integer.toString(app.getSecounds()));
+        Log.i("[setTime]",text);
     }
 
 }
