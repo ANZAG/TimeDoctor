@@ -23,27 +23,9 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="fill_parent">
 
             </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="0"
-                android:id="@+id/tv_counter"
-                android:textSize="30sp"
-                android:layout_gravity="center_horizontal|top"
-                android:layout_marginTop="50dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/tv_timestamp"
-                android:textSize="30sp"
-                android:layout_marginLeft="100dp" />
 
         </LinearLayout>
     </TabHost>

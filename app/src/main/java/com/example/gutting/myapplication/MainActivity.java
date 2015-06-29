@@ -1,8 +1,12 @@
 package com.example.gutting.myapplication;
 
 import android.app.TabActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -14,21 +18,21 @@ public class MainActivity extends TabActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_1_main);
+        setContentView(R.layout.layout_0_start);
 
         /*******************Tabs*****************************/
-        //Definieren der Tab Reiter
+        //Definieren der Tab Reiter Variablen
         mTabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
-        /*// Main tab
-        intent = new Intent(this, MainActivity.class);
+        // Main tab
+        intent = new Intent(this, MainTabActivity.class);
         spec = mTabHost.newTabSpec("main")
                 .setIndicator("Main")
                 .setContent(intent);
 
-        mTabHost.addTab(spec);*/
+        mTabHost.addTab(spec);
 
         // Apps
         intent = new Intent(this, AppListActivity.class);
@@ -39,7 +43,16 @@ public class MainActivity extends TabActivity{
 
         mTabHost.addTab(spec);
 
+        // Top10
+        intent = new Intent(this, TopTenActivity.class);
 
+        spec = mTabHost.newTabSpec("top10")
+                .setIndicator("Top10")
+                .setContent(intent);
+
+        mTabHost.addTab(spec);
+
+        // Tipps
         intent = new Intent(this, DataSafeActivity.class);
 
         spec = mTabHost.newTabSpec("tipps")
@@ -51,7 +64,6 @@ public class MainActivity extends TabActivity{
 
         /*******************Tabs*****************************/
            }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
