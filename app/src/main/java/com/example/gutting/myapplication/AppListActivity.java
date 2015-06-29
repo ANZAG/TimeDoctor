@@ -12,7 +12,7 @@ import java.util.List;
 public class AppListActivity extends ListActivity {
 
         private PackageManager packageManager = null;
-        private List<ApplicationInfo> applist = null;
+        private List<App> applist = null;
         private AppAdapter listadapter = null;
 
     @Override
@@ -39,8 +39,10 @@ public class AppListActivity extends ListActivity {
         @Override
         //Beginn der Hintergrundabläufe
         protected Void doInBackground(Void... params) {
+
+            FillAppList fillAppList = new FillAppList(packageManager);
             //Befüllen der definierten applist über die Methode checkForLaunchIntent
-            applist = checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
+            applist = fillAppList.checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
 
             //Erzeugen der Klasse AppAdapter und übergabe an einen AppAdapter
             //AppAdapter wird von der Klasse AppListActivity aus aufgerufen
@@ -77,31 +79,6 @@ public class AppListActivity extends ListActivity {
         }
     }
 
-    // Befüllen der AppList
-    // Wird innerhalb der Methode DoInBackground aufgerufen
-    private List<ApplicationInfo> checkForLaunchIntent(List<ApplicationInfo> list)
-    {
-        //Initialisieren der AppList
-        ArrayList<ApplicationInfo> appList = new ArrayList<ApplicationInfo>();
 
-        //Für jedes Element der Liste list führe aus:
-        for(ApplicationInfo info : list)
-        {
-            try{
-                //Wenn Inhalt des Package != Null
-                // d.h. wird über die Methode getLaunchIntentForPackage in einem Package eine MainActivity gefunden
-                // --> ist die Rückgabe != Null
-                if(packageManager.getLaunchIntentForPackage(info.packageName) !=null)
-                {
-                    //Füge app hinzu
-                    appList.add(info);
-                }
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        //Rückgabe der befüllten appList
-        return appList;
-    }
 
 }

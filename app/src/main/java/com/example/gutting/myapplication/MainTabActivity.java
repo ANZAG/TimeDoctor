@@ -3,11 +3,9 @@ package com.example.gutting.myapplication;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,7 +29,6 @@ public class MainTabActivity extends Activity {
     private int secounds;
 
     private Handler handler = new Handler();
-    //private FillAppList fillAppList = new FillAppList();
 
     TextView screenCheck;
     TextView timeStamp;
@@ -144,19 +141,42 @@ public class MainTabActivity extends Activity {
             // Ältere Versionen (<=20), hierfür gilt der Befehl getRunningTasks
            mPackageName = mActivityManager.getRunningTasks(1).get(0).topActivity.getPackageName();
         }
-        Log.i("Package", mPackageName);
         //Gebe den Package Namen weiter
         return mPackageName;
     }
 
+    /**
+     *
+     * @param packageName Pfad der aktuell geöffneten App
+     * Setzen der Zeit die eine App im Vordergrund geöffnet war
+     *
+     */
     public void setProgrammTime(String packageName){
+        //Initialisierung des Package Managers
+        PackageManager packageManager = getPackageManager();
 
-        //Übergebe die AppList an eine lokale Liste
-       /* List<ApplicationInfo> appList = fillAppList.getAppList();
+        //Initialisierung der Klasse FillAppList
+        // --> Auflistung aller Installierten Apps auf dem Mobile Phone
+        FillAppList fillAppList = new FillAppList(packageManager);
 
+        //Befüllen der definierten applist über die Methode checkForLaunchIntent
+        List<App> appList = fillAppList.checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
+
+        AppAdapter appAdapter = new AppAdapter(MainTabActivity.this, R.layout.list_item, appList);
+
+        //Für alle Elemente der Liste führe aus:
         for(int i = 0; i < appList.size(); i++)
         {
-           Log.i("AppList", "" + appList.get(i));
-        }*/
+
+            String appListItem = appList.get(i).getPfad();
+
+
+            //Danach vergleichen des Pfades der aktuell geöffneten App und des Pfades des Elements an der Stelle i
+            if (appListItem.equals(packageName))
+            {
+                appList.get(i).setTime();
+                appAdapter.setTime(appList.get(i));
+            }
+        }
     }
 }

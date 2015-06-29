@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +18,17 @@ import java.util.List;
 /**
  * Created by Gutting on 11.06.2015.
  */
-public class AppAdapter extends ArrayAdapter<ApplicationInfo> {
+public class AppAdapter extends ArrayAdapter<App> {
 
-    private List<ApplicationInfo> appList = null;
+    private List<App> appList = null;
     private Context context;
     private PackageManager packageManager;
 
+    private TextView time = null;
+
     // Konstruktor
     public AppAdapter(Context context, int resource,
-                      List<ApplicationInfo> objects)
+                      List<App> objects)
     {   //Aufruf des Konstruktors der Mutterklasse
         //Übergabe der Klasse (context)
         //Übergabe des Layouts (resource)
@@ -37,7 +40,6 @@ public class AppAdapter extends ArrayAdapter<ApplicationInfo> {
         this.appList = objects;
         packageManager = context.getPackageManager();
     }
-
     /**
      *
      * @param position      Aktuelles Element der Liste
@@ -64,23 +66,36 @@ public class AppAdapter extends ArrayAdapter<ApplicationInfo> {
             view = layoutInflater.inflate(R.layout.list_item, null);
         }
         //Aktuelles Element der Liste aufrufen
-        ApplicationInfo data = appList.get(position);
+        App data = appList.get(position);
 
         // Wenn Element nicht leer
         if(null != data)
         {
             //Identifiziere den entsprechenden TextView innerhalb des Layouts
             TextView appName = (TextView) view.findViewById(R.id.app_name);
-            TextView packageName = (TextView) view.findViewById(R.id.app_package);
+            time = (TextView) view.findViewById(R.id.app_time);
             ImageView iconView = (ImageView) view.findViewById(R.id.app_icon);
 
             //Befüllung des entsprechenden TextViews
-            appName.setText(data.loadLabel(packageManager));
-            packageName.setText(data.packageName);
-            iconView.setImageDrawable(data.loadIcon(packageManager));
+            appName.setText(data.getName());
+            time.setText("Verbrauchte Zeit: 0h:0m:0s");
+            //packageName.setText(data.packageName);
+            iconView.setImageDrawable(data.getIcon());
         }
             //Rückgabe des neu erzeugten Layouts
             return view;
     }
+
+    public void setTime(App app)
+    {
+//        time.setText("Verbrauchte Zeit: "
+  //                  + app.getHours() + "h:"
+    //                + app.getMinutes() + "m:"
+      //              + app.getSecounds()+ "s");
+        Log.i("Test hours", Integer.toString(app.getHours()));
+        Log.i("Test minutes", Integer.toString(app.getMinutes()));
+        Log.i("Test secounds", Integer.toString(app.getSecounds()));
+    }
+
 }
 
