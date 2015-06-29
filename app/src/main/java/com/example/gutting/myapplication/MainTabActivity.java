@@ -33,6 +33,20 @@ public class MainTabActivity extends Activity {
     TextView screenCheck;
     TextView timeStamp;
 
+    //Initialisierung des Package Managers
+    PackageManager packageManager;
+
+    //Initialisierung der Klasse FillAppList
+    // --> Auflistung aller Installierten Apps auf dem Mobile Phone
+    FillAppList fillAppList;
+
+    //Befüllen der definierten applist über die Methode checkForLaunchIntent
+    List<App> appList;
+
+    AppAdapter appAdapter;
+
+
+
     private void setTime() {
         // Wenn 60 Sekunden
         if(secounds > 59) {
@@ -70,6 +84,21 @@ public class MainTabActivity extends Activity {
         screenCheck = (TextView) findViewById(R.id.tv_counter);
         timeStamp = (TextView) findViewById(R.id.tv_timestamp);
 
+
+
+
+        //Initialisierung des Package Managers
+        packageManager = getPackageManager();
+
+        //Initialisierung der Klasse FillAppList
+        // --> Auflistung aller Installierten Apps auf dem Mobile Phone
+        fillAppList = new FillAppList(packageManager);
+
+        //Befüllen der definierten applist über die Methode checkForLaunchIntent
+
+        appList = fillAppList.checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
+
+        appAdapter = new AppAdapter(MainTabActivity.this, R.layout.list_item, appList);
     }
 
 
@@ -152,24 +181,11 @@ public class MainTabActivity extends Activity {
      *
      */
     public void setProgrammTime(String packageName){
-        //Initialisierung des Package Managers
-        PackageManager packageManager = getPackageManager();
-
-        //Initialisierung der Klasse FillAppList
-        // --> Auflistung aller Installierten Apps auf dem Mobile Phone
-        FillAppList fillAppList = new FillAppList(packageManager);
-
-        //Befüllen der definierten applist über die Methode checkForLaunchIntent
-        List<App> appList = fillAppList.checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
-
-        AppAdapter appAdapter = new AppAdapter(MainTabActivity.this, R.layout.list_item, appList);
-
         //Für alle Elemente der Liste führe aus:
         for(int i = 0; i < appList.size(); i++)
         {
 
             String appListItem = appList.get(i).getPfad();
-
 
             //Danach vergleichen des Pfades der aktuell geöffneten App und des Pfades des Elements an der Stelle i
             if (appListItem.equals(packageName))

@@ -1,9 +1,7 @@
 package com.example.gutting.myapplication;
 
-import android.app.ListActivity;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.widget.ImageView;
 
 /**
  * Created by Gutting on 29.06.2015.
@@ -22,10 +20,11 @@ public class App{
         this.name = name;
         this.pfad = pfad;
         this.icon = icon;
+
+        Log.i("[App]", "Ich wurde gerade erstellt " + pfad);
     }
 
     public void setTime(){
-        Log.i("secounds", Integer.toString(secounds));
         //Ist der Pfad gleich:
         secounds++;
         // Wenn 60 Sekunden
@@ -54,10 +53,6 @@ public class App{
         return pfad;
     }
 
-    public void setPfad(String pfad) {
-        this.pfad = pfad;
-    }
-
     public Drawable getIcon() {
         return icon;
     }
@@ -70,23 +65,13 @@ public class App{
         return hours;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
     public int getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
 
     public int getSecounds() {
         return secounds;
     }
 
-    public void setSecounds(int secounds) {
-        this.secounds = secounds;
-    }
 }

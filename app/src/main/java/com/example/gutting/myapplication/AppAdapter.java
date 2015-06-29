@@ -24,8 +24,6 @@ public class AppAdapter extends ArrayAdapter<App> {
     private Context context;
     private PackageManager packageManager;
 
-    private TextView time = null;
-
     // Konstruktor
     public AppAdapter(Context context, int resource,
                       List<App> objects)
@@ -73,7 +71,7 @@ public class AppAdapter extends ArrayAdapter<App> {
         {
             //Identifiziere den entsprechenden TextView innerhalb des Layouts
             TextView appName = (TextView) view.findViewById(R.id.app_name);
-            time = (TextView) view.findViewById(R.id.app_time);
+            TextView time = (TextView) view.findViewById(R.id.app_time);
             ImageView iconView = (ImageView) view.findViewById(R.id.app_icon);
 
             //Befüllung des entsprechenden TextViews
@@ -88,11 +86,13 @@ public class AppAdapter extends ArrayAdapter<App> {
 
     public void setTime(App app)
     {
-//        time.setText("Verbrauchte Zeit: "
-  //                  + app.getHours() + "h:"
-    //                + app.getMinutes() + "m:"
-      //              + app.getSecounds()+ "s");
-        Log.i("Test hours", Integer.toString(app.getHours()));
+        /*time.setText("Verbrauchte Zeit: "
+                    + Integer.toString(app.getHours()) + "h:"
+                    + Integer.toString(app.getMinutes()) + "m:"
+                    + Integer.toString(app.getSecounds())+ "s");
+        Log.i("Test hours", Integer.toString(app.getHours()));*/
+
+
         Log.i("Test minutes", Integer.toString(app.getMinutes()));
         Log.i("Test secounds", Integer.toString(app.getSecounds()));
     }
