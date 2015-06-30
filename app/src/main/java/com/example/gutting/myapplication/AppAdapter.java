@@ -21,7 +21,9 @@ public class AppAdapter extends ArrayAdapter<App> {
     private Context context;
     private PackageManager packageManager;
 
-    TextView time;
+    int hours = 0;
+    int minutes = 0;
+    int secounds = 0;
 
     // Konstruktor
     public AppAdapter(Context context, int resource,
@@ -70,12 +72,12 @@ public class AppAdapter extends ArrayAdapter<App> {
         {
             //Identifiziere den entsprechenden TextView innerhalb des Layouts
             TextView appName = (TextView) view.findViewById(R.id.app_name);
-            time = (TextView) view.findViewById(R.id.app_time);
+            TextView time = (TextView) view.findViewById(R.id.app_time);
             ImageView iconView = (ImageView) view.findViewById(R.id.app_icon);
 
             //Befüllung des entsprechenden TextViews
             appName.setText(data.getName());
-            time.setText("Verbrauchte Zeit: 0h:0m:0s");
+            time.setText("Verbrauchte Zeit: "+hours +"h:"+minutes+"m:"+secounds+"s");
             //packageName.setText(data.packageName);
             iconView.setImageDrawable(data.getIcon());
         }
@@ -83,12 +85,14 @@ public class AppAdapter extends ArrayAdapter<App> {
             return view;
     }
 
-    public void setTime(App app, int position, View view)
+    public void setTime(App app, int position)
     {
-        time = (TextView) view.findViewById(R.id.app_time);
-        String text = time.getText().toString();
+        App item = getItem(position);
+        Log.i("[setTime", item.getName().toString());
 
-        Log.i("[setTime]",text);
+        hours = app.getHours();
+        minutes = app.getMinutes();
+        secounds = app.getSecounds();
     }
 
 }

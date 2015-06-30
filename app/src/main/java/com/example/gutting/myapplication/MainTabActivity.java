@@ -190,7 +190,7 @@ public class MainTabActivity extends Activity {
             if (appListItem.equals(packageName))
             {
                 appList.get(i).setTime();
-                appAdapter.setTime(appList.get(i));
+                appAdapter.setTime(appList.get(i), i);
             }
         }
     }
