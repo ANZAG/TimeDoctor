@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,22 +31,10 @@ public class MainTabActivity extends Activity {
 
     private Handler handler = new Handler();
 
-    TextView screenCheck;
-    TextView timeStamp;
+    private TextView screenCheck;
+    private TextView timeStamp;
 
-    //Initialisierung des Package Managers
-    PackageManager packageManager;
-
-    //Initialisierung der Klasse FillAppList
-    // --> Auflistung aller Installierten Apps auf dem Mobile Phone
-    FillAppList fillAppList;
-
-    //Befüllen der definierten applist über die Methode checkForLaunchIntent
-    List<App> appList;
-
-    AppAdapter appAdapter;
-
-
+    private List<App> appList;
 
     private void setTime() {
         // Wenn 60 Sekunden
@@ -84,21 +73,8 @@ public class MainTabActivity extends Activity {
         screenCheck = (TextView) findViewById(R.id.tv_counter);
         timeStamp = (TextView) findViewById(R.id.tv_timestamp);
 
-
-
-
-        //Initialisierung des Package Managers
-        packageManager = getPackageManager();
-
-        //Initialisierung der Klasse FillAppList
-        // --> Auflistung aller Installierten Apps auf dem Mobile Phone
-        fillAppList = new FillAppList(packageManager);
-
-        //Befüllen der definierten applist über die Methode checkForLaunchIntent
-
-        appList = fillAppList.checkForLaunchIntent(packageManager.getInstalledApplications(PackageManager.GET_META_DATA));
-
-        appAdapter = new AppAdapter(MainTabActivity.this, R.layout.list_item, appList);
+        appList = MainActivity.getApps();
+        //Log.i("APPLIST", Integer.toString(appList.size()));
     }
 
 
@@ -108,14 +84,14 @@ public class MainTabActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             // TODO Auto-generated method stub
-            Log.i("[BroadcastReceiver]", "MyReceiver");
+            //Log.i("[BroadcastReceiver]", "MyReceiver");
 
             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 
                 //Start der Methode runnable mittels Handler (Übergabe 1 Sekunde)
                 handler.postDelayed(runnable, 1000);
 
-                Log.i("[BroadcastReceiver]", "Screen ON");
+                //Log.i("[BroadcastReceiver]", "Screen ON");
                 //Anzahl der Bildschirmentsperrungen + 1
                 on++;
                 //Neue Anzahl via Textview ausgeben
@@ -124,7 +100,7 @@ public class MainTabActivity extends Activity {
 
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 
-                Log.i("[BroadcastReceiver]", "Screen OFF");
+                //Log.i("[BroadcastReceiver]", "Screen OFF");
 
                 //Beenden des runnable Handler
                 handler.removeCallbacks(runnable);
@@ -133,6 +109,7 @@ public class MainTabActivity extends Activity {
         }
 
     };
+
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
@@ -144,7 +121,7 @@ public class MainTabActivity extends Activity {
             setProgrammTime(getCurrentProgramm());
 
 
-            Log.i("[Runnable]", "Hochzaehlen");
+            //Log.i("[Runnable]", "Hochzaehlen");
             // runnable handler jede Sekunde neu starten
             handler.postDelayed(this, 1000);
         }
@@ -190,9 +167,11 @@ public class MainTabActivity extends Activity {
             //Danach vergleichen des Pfades der aktuell geöffneten App und des Pfades des Elements an der Stelle i
             if (appListItem.equals(packageName))
             {
+                //Log.i("[Huston]", "The Eagle has landed");
                 appList.get(i).setTime();
-                appAdapter.setTime(appList.get(i));
+                //
             }
         }
     }
+
 }
