@@ -12,17 +12,11 @@ public class App{
     private String pfad;
     private Drawable icon;
 
-    public int hours = 0;
-    public int minutes = 0;
-    public int secounds = 0;
+    private int hours = 0;
+    private int minutes = 0;
+    private int secounds = 0;
 
-    public App(CharSequence name, String pfad, Drawable icon){
-        this.name = name;
-        this.pfad = pfad;
-        this.icon = icon;
-
-        Log.i("[App]", "Ich wurde gerade erstellt " + pfad);
-    }
+    private String timeString = "Verbrauchte Zeit: " + hours + "h:" + minutes + "m:" + secounds +"s";
 
     public void setTime(){
         //Ist der Pfad gleich:
@@ -39,6 +33,8 @@ public class App{
             hours++;
             minutes = 0;
         }
+
+        timeString = "Verbrauchte Zeit: " + hours + "h:" + minutes + "m:" + secounds +"s";
     }
 
     public CharSequence getName() {
@@ -53,6 +49,10 @@ public class App{
         return pfad;
     }
 
+    public void setPfad(String pfad) {
+        this.pfad = pfad;
+    }
+
     public Drawable getIcon() {
         return icon;
     }
@@ -61,17 +61,8 @@ public class App{
         this.icon = icon;
     }
 
-    public int getHours() {
-        return hours;
-    }
-
-    public int getMinutes() {
-        return minutes;
-    }
-
-
-    public int getSecounds() {
-        return secounds;
+    public String getTimeString() {
+        return timeString;
     }
 
 }

@@ -18,8 +18,13 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            </TabWidget>
+
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
@@ -84,11 +89,5 @@
 
         </LinearLayout>
     </TabHost>
-
-    <!--android:id="@+id/GeladenerText"-->
-
-    <!--android:id="@+id/buttonSafe"-->
-
-    <!--android:id="@+id/buttonLoad"-->
 
 </LinearLayout>

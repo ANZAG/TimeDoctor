@@ -1,15 +1,17 @@
 package com.example.gutting.myapplication;
 
 import android.app.TabActivity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends TabActivity{
 
@@ -25,6 +27,8 @@ public class MainActivity extends TabActivity{
         mTabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
+
+        loadApps();
 
         // Main tab
         intent = new Intent(this, MainTabActivity.class);
@@ -63,7 +67,36 @@ public class MainActivity extends TabActivity{
 
 
         /*******************Tabs*****************************/
-           }
+    }
+
+    private PackageManager manager;
+
+    private static ArrayList<App> apps = new ArrayList<App>();
+
+    public static ArrayList<App> getApps(){
+        return apps;
+    }
+
+
+    public void loadApps(){
+
+        Log.i("[LoadApps]", "ausgeführt");
+
+        manager = getPackageManager();
+
+        Intent i = new Intent(Intent.ACTION_MAIN, null);
+        i.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> availableActivities = manager.queryIntentActivities(i, 0);
+        for(ResolveInfo ri:availableActivities){
+            App app = new App();
+            app.setName(ri.loadLabel(manager));
+            app.setPfad(ri.activityInfo.packageName);
+            app.setIcon(ri.activityInfo.loadIcon(manager));
+            apps.add(app);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
