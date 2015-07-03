@@ -5,23 +5,18 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo"
+        android:logo="@mipmap/logo"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Timedoctor"
-        android:uiOptions="splitActionBarWhenNarrow">
+        android:theme="@style/AppTheme">
+
         <activity
             android:name="com.example.gutting.myapplication.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Aktivierung der DataSafeActivity-->
-        <activity android:name=".DataSafeActivity"/> // Nur aus Testzwecken
-        <activity android:name=".AppListActivity"/>
-        <activity android:name=".MainTabActivity"/>
-        <activity android:name=".TopTenActivity"/>
-
     </application>
 
 </manifest>
