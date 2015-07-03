@@ -4,93 +4,235 @@
     android:layout_height="match_parent">
 <LinearLayout
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anzahl Entsperrungen: "
-            android:id="@+id/tv_counterString"
-            android:textSize="30sp" />
+            android:text="Heute"
+            android:id="@+id/tv_day1"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_counter"
-            android:textSize="30sp"
-            android:text="0" />
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anzahl Entsperrungen: "
+                android:id="@+id/tv_counter_string"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="76dp"
+                android:layout_height="46dp"
+                android:id="@+id/tv_counter"
+                android:textSize="20sp"
+                android:background="@drawable/bg"
+                android:text="0"
+                android:autoText="false"
+                android:elegantTextHeight="false"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stunden: "
+                android:id="@+id/tv_hours_string"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_hours"
+                android:textSize="20sp"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minuten: "
+                android:id="@+id/tv_minutes_string"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_minutes"
+                android:textSize="20sp"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sekunden: "
+                android:id="@+id/tv_seconds_string"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_seconds"
+                android:textSize="20sp"
+                android:text="0" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|bottom"
-        android:layout_marginTop="50dp">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/grey">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stunden: "
-            android:id="@+id/tv_hoursName"
-            android:textSize="30sp" />
+            android:text="Gestern"
+            android:id="@+id/tv_day2"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_hours"
-            android:textSize="30sp"
-            android:text="0" />
-    </LinearLayout>
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp" >
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anzahl Entsperrungen: "
+                android:id="@+id/tv_y_counter_string"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="76dp"
+                android:layout_height="46dp"
+                android:id="@+id/tv_y_counter"
+                android:textSize="20sp"
+                android:background="@drawable/bg"
+                android:text="0"
+                android:autoText="false"
+                android:elegantTextHeight="false"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Minuten: "
-            android:id="@+id/tv_minutesString"
-            android:textSize="30sp"/>
+            android:layout_gravity="top|bottom"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp" >
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stunden: "
+                android:id="@+id/tv_y_hours_string"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_y_hours"
+                android:textSize="20sp"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_minutes"
-            android:textSize="30sp"
-            android:text="0" />
-    </LinearLayout>
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp" >
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minuten: "
+                android:id="@+id/tv_y_minutes_string"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_y_minutes"
+                android:textSize="20sp"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Sekunden: "
-            android:id="@+id/tv_secondsString"
-            android:textSize="30sp"/>
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_seconds"
-            android:textSize="30sp"
-            android:text="0" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sekunden: "
+                android:id="@+id/tv_y_seconds_string"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_y_seconds_string"
+                android:textSize="20sp"
+                android:text="0" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

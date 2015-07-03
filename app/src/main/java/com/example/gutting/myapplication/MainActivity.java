@@ -63,7 +63,6 @@ public class MainActivity extends ActionBarActivity {
             seconds = savedInstanceState.getInt("DisplaySeconds");
         }
 
-
         /* Toolbar und Tabs*/
 
         // Finden des Layouts fuer die Toolbar
@@ -161,7 +160,7 @@ public class MainActivity extends ActionBarActivity {
      * Laden aller installierten Apps
      */
     public void loadApps(){
-        PackageManager manager = getPackageManager();
+        PackageManager manager = this.getPackageManager();
 
         Intent i = new Intent(Intent.ACTION_MAIN, null);
         i.addCategory(Intent.CATEGORY_LAUNCHER);

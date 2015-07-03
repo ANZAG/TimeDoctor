@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="You Are In Tab 3"
-        android:id="@+id/textView"
+        android:id="@+id/textview"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
