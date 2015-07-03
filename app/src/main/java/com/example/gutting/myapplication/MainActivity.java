@@ -187,7 +187,6 @@ public class MainActivity extends ActionBarActivity {
             // Ermitteln der momentan geoeffneten App
             setProgrammTime(getCurrentProgramm());
 
-
             Log.i("[Runnable]", "Hochzaehlen");
             // runnable handler jede Sekunde neu starten
             handler.postDelayed(this, 1000);
