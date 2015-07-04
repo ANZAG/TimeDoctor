@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -67,9 +68,17 @@ public class MainActivity extends ActionBarActivity {
 
         // Finden des Layouts fuer die Toolbar
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
+
+
         // Danach dieses als Standard fuer die Activity setzen
         setSupportActionBar(toolbar);
-
+        // Wenn die Toolbar initialisiert wurde
+        if(toolbar != null){
+            //Setze das TimeDoctor Logo innerhalb der Toolbar
+            getSupportActionBar().setIcon(R.mipmap.logo);
+            //Setze den Text "TimeDoctor" mit der Textfarbe "weiﬂ"
+            getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFFFFF\">" + getString(R.string.app_name) + "</font>"));
+        }
         // Erstellen des ViewPagerAdapter.
         // Diesem wird der Fragment Manager, die Namen der Tabs und die Anzahl aller Tabs uebergeben.
         adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
