@@ -65,10 +65,8 @@ public class MainActivity extends ActionBarActivity {
         }
 
         /* Toolbar und Tabs*/
-
         // Finden des Layouts fuer die Toolbar
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-
 
         // Danach dieses als Standard fuer die Activity setzen
         setSupportActionBar(toolbar);
