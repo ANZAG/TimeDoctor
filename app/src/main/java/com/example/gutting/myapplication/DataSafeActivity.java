@@ -70,12 +70,12 @@ public class DataSafeActivity  extends Activity implements View.OnClickListener 
         {
             editor.putString("Data1", inhalt);
             editor.commit();
-            Toast.makeText(this, "Neuer Inhalt wurde hinzugeüfgt", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Neuer Inhalt wurde hinzugefügt", Toast.LENGTH_LONG).show();
         }
     }
 
     private void textLaden(){
-        if(speicher.getString("Data1",null) != null){ // WEnn nichts in Data 1, geht weiter zu zweitem Parameter null und geht dann nur weiter wenn ungleich 0
+        if(speicher.getString("Data1",null) != null){ // Wenn nichts in Data 1, geht weiter zu zweitem Parameter null und geht dann nur weiter wenn ungleich 0
         anzeige.setText(speicher.getString("Data1",null));
         }
         else
