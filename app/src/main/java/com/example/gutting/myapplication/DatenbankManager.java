@@ -15,12 +15,9 @@ public class DatenbankManager extends SQLiteOpenHelper {
     private static final String DB_NAME = "zeiten.db";
     private static final int DB_VERSION = 1;
     private static final String td_CREATE =
-            "CREATE TABLE td (" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "name TEXT NOT NULL, " + "hours INTEGER, " + "minutes INTEGER, " + "seconds INTEGER, " +"clicks INTEGER, " +")";
+            "CREATE TABLE td (" + "name TEXT PRIMARY KEY NOT NULL, " + "hours INTEGER, " + "minutes INTEGER, " + "seconds INTEGER, " +"clicks INTEGER, " +")";
 
-    private static final String td_DROP =
-            "DROP TABLE IF EXSITS td";
+    private static final String td_DROP = "DROP TABLE IF EXISTS td";
 
     public DatenbankManager (Context context){
         super(context, DB_NAME, null, DB_VERSION);
@@ -75,18 +72,15 @@ public class DatenbankManager extends SQLiteOpenHelper {
             "td",
             projection,
             null,
-                null,
+            null,
             null,
             null,
             null
         );
 
         c.moveToFirst();
-        String name = c.getString(c.getColumnIndexOrThrow("1"));
+        String name = c.getString(c.getColumnIndexOrThrow("name"));
 
         Log.i("DatenbankTest1", name);
-
-
-
     }
 }

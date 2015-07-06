@@ -120,7 +120,8 @@ public class MainActivity extends ActionBarActivity {
         handler.postDelayed(runnable, 1000);
 
         mDatenbankManager = new DatenbankManager(this);
-
+        mDatenbankManager.write("Display", hours, minutes, seconds, on);
+        mDatenbankManager.read();
     }
 
     /**
