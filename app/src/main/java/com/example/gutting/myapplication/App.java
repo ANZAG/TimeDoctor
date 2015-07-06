@@ -1,17 +1,41 @@
 package com.example.gutting.myapplication;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 /**
  *
  */
-public class App {
+public class App implements Comparable<App> {
 
     private CharSequence name;
     private String pfad;
     private Drawable icon;
 
+    private int timeMax = 0;
     private int hours = 0;
+
+    public int getTimeMax() {
+
+        timeMax = 0;
+        timeMax = timeMax + hours * 3600;
+        timeMax = timeMax + minutes * 60;
+        timeMax = timeMax + secounds;
+        return timeMax;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public int getSecounds() {
+        return secounds;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
     private int minutes = 0;
     private int secounds = 0;
 
@@ -63,5 +87,13 @@ public class App {
     public String getTimeString() {
         return timeString;
     }
+
+    // Test Balkendiagramm
+
+    @Override
+    public int compareTo(App app) {
+        return Integer.toString(this.timeMax).compareTo(Integer.toString(app.getTimeMax()));
+    }
+
 
 }

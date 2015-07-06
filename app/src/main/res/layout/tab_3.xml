@@ -1,15 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <!-- Erster Balken -->
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You Are In Tab 3"
-        android:id="@+id/textview"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@color/grey">
 
-</RelativeLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linear_layout_1"
+            android:layout_marginBottom="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:id="@+id/bar_logo_1"
+                android:layout_centerHorizontal="true"
+                />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_centerHorizontal="true"
+            android:background="#6b000000"
+            android:layout_above="@+id/linear_layout_1"
+            android:id="@+id/bar_1"
+            android:layout_marginBottom="10dp">
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--******************************************-->
+    <!-- Zweiter Balken-->
+    <!--******************************************-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"      >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linear_layout_2"
+            android:layout_marginBottom="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:id="@+id/bar_logo_2"
+                android:layout_centerHorizontal="true"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+                android:layout_width="20dp"
+                android:layout_height="5dp"
+                android:layout_centerHorizontal="true"
+                android:background="#6b000000"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="false"
+                android:layout_above="@+id/linear_layout_2"
+                android:id="@+id/bar_2"
+                android:layout_marginBottom="10dp">
+            </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <!--******************************************-->
+    <!-- Dritter Balken-->
+    <!--******************************************-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@color/grey">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linear_layout_3"
+            android:layout_marginBottom="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:id="@+id/bar_logo_3"
+                android:layout_centerHorizontal="true"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_centerHorizontal="true"
+            android:background="#6b000000"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_above="@+id/linear_layout_3"
+            android:id="@+id/bar_3"
+            android:layout_marginBottom="10dp">
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--******************************************-->
+    <!-- Vierter Balken-->
+    <!--******************************************-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linear_layout_4"
+            android:layout_marginBottom="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:id="@+id/bar_logo_4"
+                android:layout_centerHorizontal="true"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_centerHorizontal="true"
+            android:background="#6b000000"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_above="@+id/linear_layout_4"
+            android:id="@+id/bar_4"
+            android:layout_marginBottom="10dp">
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--******************************************-->
+    <!-- Fuenfter Balken-->
+    <!--******************************************-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@color/grey">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linear_layout_5"
+            android:layout_marginBottom="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/logo"
+                android:id="@+id/bar_logo_5"
+                android:layout_centerHorizontal="true"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_centerHorizontal="true"
+            android:background="#6b000000"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_above="@+id/linear_layout_5"
+            android:id="@+id/bar_5"
+            android:layout_marginBottom="10dp">
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

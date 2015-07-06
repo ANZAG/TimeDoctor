@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -14,10 +15,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
+
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 public class MainActivity extends ActionBarActivity {
 
     /* Variablen fuer Toolbar und Tabs */
@@ -44,7 +49,6 @@ public class MainActivity extends ActionBarActivity {
 
     // Liste aller installierten Apps
     private static ArrayList<App> apps = new ArrayList<>();
-
 
     public static ArrayList<App> getApps(){
         return apps;
@@ -115,6 +119,21 @@ public class MainActivity extends ActionBarActivity {
 
         // Starte eine Schleife, die sich alle Sekunde neu aufruft
         handler.postDelayed(runnable, 1000);
+
+
+        //Setzen des PopUp - Info Button
+        ImageButton infoButton = (ImageButton) findViewById(R.id.info_button);
+
+        infoButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            Intent info = new Intent(MainActivity.this, Info.class);
+
+                startActivity(info);
+
+            }
+        });
     }
 
     /**
@@ -192,6 +211,7 @@ public class MainActivity extends ActionBarActivity {
             setTime();
             // Ermitteln der momentan geoeffneten App
             setProgrammTime(getCurrentProgramm());
+            appSort(apps); //Test
 
             Log.i("[Runnable]", "Hochzaehlen");
             // runnable handler jede Sekunde neu starten
@@ -280,4 +300,17 @@ public class MainActivity extends ActionBarActivity {
         //Gebe den Package Namen weiter
         return mPackageName;
     }
-}
+
+    //Sortierung AppListe
+    public ArrayList<App> appSort(ArrayList<App> a) {
+
+        //Sortieren der Apps nach MaxTime
+        Collections.sort(a);
+        //Absteigend sortieren
+        Collections.sort(a, Collections.reverseOrder());
+
+        //Rückgabe der sortierten Liste
+        return a;
+    }
+
+    }
