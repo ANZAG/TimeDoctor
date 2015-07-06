@@ -54,6 +54,8 @@ public class MainActivity extends ActionBarActivity {
         return apps;
     }
 
+    private DatenbankManager mDatenbankManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +136,12 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
+        mDatenbankManager = new DatenbankManager(this);
+        mDatenbankManager.write("Display", hours, minutes, seconds, on);
+        mDatenbankManager.read();
     }
+
 
     /**
      * Speichern der aktuellen Werte
