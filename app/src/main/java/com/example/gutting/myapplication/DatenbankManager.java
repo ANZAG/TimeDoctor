@@ -2,6 +2,7 @@ package com.example.gutting.myapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -16,7 +17,7 @@ public class DatenbankManager extends SQLiteOpenHelper {
     private static final String td_CREATE =
             "CREATE TABLE td (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "name TEXT NOT NULL" + "hours INTEGER" + "minutes INTEGER" + "seconds INTEGER" +"clicks INTEGER" +")";
+                    "name TEXT NOT NULL, " + "hours INTEGER, " + "minutes INTEGER, " + "seconds INTEGER, " +"clicks INTEGER, " +")";
 
     private static final String td_DROP =
             "DROP TABLE IF EXSITS td";
@@ -58,5 +59,34 @@ public class DatenbankManager extends SQLiteOpenHelper {
         test = db.insert("td", "null", values);
 
         Log.i("DatenbankTest", Long.toString(test));
+    }
+
+    public void read(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+         "name",
+         "hours",
+         "minutes",
+         "seconds",
+         "clicks"
+        };
+        Cursor c = db.query(
+            "td",
+            projection,
+            null,
+                null,
+            null,
+            null,
+            null
+        );
+
+        c.moveToFirst();
+        String name = c.getString(c.getColumnIndexOrThrow("1"));
+
+        Log.i("DatenbankTest1", name);
+
+
+
     }
 }
