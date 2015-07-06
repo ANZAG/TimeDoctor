@@ -15,7 +15,7 @@ public class App {
     private int minutes = 0;
     private int secounds = 0;
 
-    private String timeString = "Verbrauchte Zeit: " + hours + "h:" + minutes + "m:" + secounds +"s";
+       private String timeString = "Verbrauchte Zeit: " + hours + "h:" + minutes + "m:" + secounds +"s"; //Ausgabe
 
     public void setTime(){
         //Ist der Pfad gleich:

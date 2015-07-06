@@ -26,6 +26,7 @@ public class MainActivity extends ActionBarActivity {
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
 
+    private DatenbankManager mDatenbankManager;
     CharSequence Titles[]={"Display","Apps", "Top5", "Facts"};
     int Numboftabs = 4;
 
@@ -34,7 +35,7 @@ public class MainActivity extends ActionBarActivity {
     // Displayaufrufe
     int on;
 
-    // Timestamp
+    // Timestamp Display Zeit
     private int hours;
     private int minutes;
     private int seconds;
@@ -58,8 +59,8 @@ public class MainActivity extends ActionBarActivity {
         /* Speicher */
         //Uebergeben der gespeicherten Bundles
         if(savedInstanceState != null) {
-            on = savedInstanceState.getInt("DisplayOn");
-            hours = savedInstanceState.getInt("DisplayHours");
+            on = savedInstanceState.getInt("DisplayOn"); //Display Entsperrungen
+            hours = savedInstanceState.getInt("DisplayHours"); //wie lange der Display on war, ohne Berücksichtigung einer App
             minutes = savedInstanceState.getInt("DisplayMinutes");
             seconds = savedInstanceState.getInt("DisplaySeconds");
         }
@@ -115,8 +116,11 @@ public class MainActivity extends ActionBarActivity {
         // Alle installierten Apps des Handys ausfindig machen
         loadApps();
 
-        // Starte eine Schleife, die sich alle Sekunde neu aufruft
+        // Starte eine Schleife, die sich jede Sekunde neu aufruft
         handler.postDelayed(runnable, 1000);
+
+        mDatenbankManager = new DatenbankManager(this);
+
     }
 
     /**
@@ -130,6 +134,8 @@ public class MainActivity extends ActionBarActivity {
         outState.putInt("DisplayHours", hours);
         outState.putInt("DisplayMinutes", minutes);
         outState.putInt("DisplaySeconds", seconds);
+
+        mDatenbankManager.write("Display", hours, minutes, seconds, on);
     }
 
     /**
@@ -185,7 +191,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * Schleife, die alle Sekunde aufgerufen wird
+     * Schleife, die jede Sekunde aufgerufen wird
      */
     private Runnable runnable = new Runnable() {
         @Override
@@ -282,4 +288,7 @@ public class MainActivity extends ActionBarActivity {
         //Gebe den Package Namen weiter
         return mPackageName;
     }
+
+
+
 }
