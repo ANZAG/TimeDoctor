@@ -15,8 +15,6 @@ public class Info extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_popup);
 
-
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -24,7 +22,6 @@ public class Info extends Activity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int) (width * .8), (int) (height * .6));
-
 
     }
 }
