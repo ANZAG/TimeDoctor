@@ -1,12 +1,11 @@
 package com.example.gutting.myapplication;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 /**
- * Created by Gutting on 29.06.2015.
+ *
  */
-public class App{
+public class App {
 
     private CharSequence name;
     private String pfad;
@@ -23,13 +22,13 @@ public class App{
         secounds++;
         // Wenn 60 Sekunden
         if(secounds > 59) {
-            // Minuten hochzählen, 60 Sekunden abziehen
+            // Minuten hochzaehlen, 60 Sekunden abziehen
             minutes++;
             secounds = 0;
         }
         // Wenn Minuten = 60
         if(minutes > 59 ){
-            // Stunden hochzählen, Minuten abziehen
+            // Stunden hochzaehlen, Minuten abziehen
             hours++;
             minutes = 0;
         }
